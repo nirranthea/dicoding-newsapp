@@ -1,4 +1,5 @@
 import 'package:dicoding_news_app/detail_page.dart';
+import 'package:dicoding_news_app/styles.dart';
 import 'package:dicoding_news_app/web_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,17 @@ class MyApp extends StatelessWidget {
       title: 'News App',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        primaryColor: primaryColor,
+        accentColor: secondaryColor,
+        scaffoldBackgroundColor: Colors.white,
+        textTheme: myTextTheme,
+        appBarTheme: AppBarTheme(
+            textTheme: myTextTheme.apply(bodyColor: Colors.black),
+            elevation: 0),
+        buttonTheme: ButtonThemeData(
+            buttonColor: secondaryColor,
+            textTheme: ButtonTextTheme.primary,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0)))),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: NewsListPage.routeName,
