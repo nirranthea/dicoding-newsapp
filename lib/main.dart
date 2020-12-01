@@ -1,9 +1,8 @@
-import 'package:dicoding_news_app/detail_page.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
+import 'package:dicoding_news_app/ui/home_page.dart';
 import 'package:dicoding_news_app/styles.dart';
-import 'package:dicoding_news_app/web_page.dart';
+import 'package:dicoding_news_app/ui/article_web_view.dart';
 import 'package:flutter/material.dart';
-
-import 'news_list_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,15 +23,19 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
             textTheme: myTextTheme.apply(bodyColor: Colors.black),
             elevation: 0),
+//        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+//          selectedItemColor: secondaryColor,
+//          unselectedItemColor: Colors.grey,
+//        ),
         buttonTheme: ButtonThemeData(
             buttonColor: secondaryColor,
             textTheme: ButtonTextTheme.primary,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0)))),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: NewsListPage.routeName,
+      initialRoute: HomePage.routeName,
       routes: {
-        NewsListPage.routeName: (context) => NewsListPage(),
+        HomePage.routeName: (context) => HomePage(),
         ArticleDetailPage.routeName: (context) => ArticleDetailPage(
           article: ModalRoute.of(context).settings.arguments,
         ),
