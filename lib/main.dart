@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
         textTheme: myTextTheme,
         appBarTheme: AppBarTheme(
             textTheme: myTextTheme.apply(bodyColor: Colors.black),
-            elevation: 0),
+            elevation: 0,
+        ),
 //        bottomNavigationBarTheme: BottomNavigationBarThemeData(
 //          selectedItemColor: secondaryColor,
 //          unselectedItemColor: Colors.grey,
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         buttonTheme: ButtonThemeData(
             buttonColor: secondaryColor,
             textTheme: ButtonTextTheme.primary,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0)))),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0))),
+        ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       initialRoute: HomePage.routeName,
