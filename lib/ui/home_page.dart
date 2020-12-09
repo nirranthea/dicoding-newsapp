@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:dicoding_news_app/data/api/api_service.dart';
+import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'article_list_page.dart';
 import 'setting_page.dart';
@@ -31,7 +34,10 @@ class _HomePageState extends State<HomePage> {
   ];
 
   List<Widget> _listWidget = [
-    ArticleListPage(),
+    ChangeNotifierProvider<NewsProvider>(
+      create: (_) => NewsProvider(apiService: ApiService()),
+      child: ArticleListPage(),
+    ),
     SettingPage(),
   ];
 
