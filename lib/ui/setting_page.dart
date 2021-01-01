@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dicoding_news_app/provider/preferences_provider.dart';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
 import 'package:dicoding_news_app/widgets/custom_dialog.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
@@ -11,36 +12,43 @@ import 'package:provider/provider.dart';
 class SettingPage extends StatelessWidget {
 
   Widget _buildSettingList(BuildContext context) {
-    return ListView(
-      children: [
-        Material(
-          child: ListTile(
-            title: Text('Dark Theme'),
-            trailing: Switch.adaptive(
-              value: false,
-              onChanged: (value) => customDialog(context),
+    return Consumer<PreferencesProvider>(
+      builder: (context, provider, child) {
+        return ListView(
+          children: [
+            Material(
+              child: ListTile(
+                title: Text('Dark Theme'),
+                trailing: Switch.adaptive(
+                  value: provider.isDarkTheme,
+                  onChanged: (value) {
+                    provider.enableDarkTheme(value);
+                  },
+                ),
+              ),
             ),
-          ),
-        ),
-        Material(
-          child: ListTile(
-            title: Text('Scheduling News'),
-            trailing: Consumer<SchedulingProvider>(
-              builder: (context, scheduled, _) {
-                return Switch.adaptive(
-                    value: scheduled.isScheduled,
-                    onChanged: (value) async {
-                      if (Platform.isIOS) {
-                        customDialog(context);
-                      } else {
-                        scheduled.scheduledNews(value);
-                      }
-                    });
-              },
+            Material(
+              child: ListTile(
+                title: Text('Scheduling News'),
+                trailing: Consumer<SchedulingProvider>(
+                  builder: (context, scheduled, _) {
+                    return Switch.adaptive(
+                        value: provider.isDailyNewsActive,
+                        onChanged: (value) async {
+                          if (Platform.isIOS) {
+                            customDialog(context);
+                          } else {
+                            scheduled.scheduledNews(value);
+                            provider.enableDailyNews(value);
+                          }
+                        });
+                  },
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 
