@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
+import 'package:dicoding_news_app/data/db/database_helper.dart';
 import 'package:dicoding_news_app/data/preferences/preferences_helper.dart';
+import 'package:dicoding_news_app/provider/database_provider.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/provider/preferences_provider.dart';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
@@ -55,6 +57,11 @@ class MyApp extends StatelessWidget {
             preferencesHelper: PreferencesHelper(
               sharedPreferences: SharedPreferences.getInstance(),
             ),
+          ),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DatabaseProvider(
+            databaseHelper: DatabaseHelper(),
           ),
         ),
       ],
